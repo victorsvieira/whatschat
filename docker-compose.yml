@@ -1,0 +1,16 @@
+services:
+  chatwoot-zapi:
+    build: .
+    container_name: chatwoot-zapi
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "3333:3333"
+    # Se o Chatwoot roda na mesma VPS via Docker, conecte na mesma rede
+    # para usar a URL interna (ex: http://chatwoot-rails:3000) no CHATWOOT_BASE_URL.
+    # networks:
+    #   - chatwoot_default
+
+# networks:
+#   chatwoot_default:
+#     external: true
