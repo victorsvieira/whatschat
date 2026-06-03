@@ -11,7 +11,13 @@ const jsonHeaders = {
 
 async function cwFetch(path, options = {}) {
   const url = `${API}${path}`;
-  const res = await fetch(url, options);
+  const res = await fetch(url, {
+    ...options,
+    headers: {
+      api_access_token: apiAccessToken,
+      ...(options.headers || {}),
+    },
+  });
   const text = await res.text();
   let body;
   try {
